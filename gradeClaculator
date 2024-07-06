@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class GradeCalcu {
+    public static void main(String[] args){
+        Scanner sc= new Scanner(System.in);
+        System.out.println("Enter the no. of subjects:");
+        int NumOfSub=sc.nextInt();
+        int[] array=new int[NumOfSub];
+        int totalMarks=0;
+
+        for(int i=1;i<NumOfSub;i++){
+            System.out.println("Enter the marks of sub"+i+"(/ 100)");
+            array[i]=sc.nextInt();
+            totalMarks+=array[i];
+        }
+        System.out.println("Total marks obtain:"+totalMarks);
+        double p= (double)totalMarks/NumOfSub;
+        System.out.println("Average percentage:"+p+"%");
+
+        String grade;
+        if(p>85){
+            grade="A";
+        }
+        else if(p>70 && p<=85){
+            grade="B";
+        }
+        else if(p>60 && p<=70){
+            grade="C";
+        }
+        else if(p>45 && p<=60){
+            grade="D";
+        }
+        else {
+            grade="F";
+        }
+        System.out.println("Corresponding Grade:"+grade);
+    }
+}
