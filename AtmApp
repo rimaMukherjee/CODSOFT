@@ -1,0 +1,76 @@
+import java.util.Scanner;
+class  BankDetails{
+     private double balance;
+     public BankDetails(double balance){
+         this.balance=balance;
+     }
+     public double getBalance(){
+         return balance;
+     }
+     public void deposit(double amount){
+             balance+=amount;
+             System.out.println("deposited amount Rs"+amount);
+
+     }
+     public void withdraw(double amount) {
+         if (amount > 0 && amount <= balance) {
+             balance -= amount;
+             System.out.println("withdrawn amount Rs" + amount + "updated balance Rs" + balance);
+         } else {
+             System.out.println("Insufficient balance!");
+         }
+     }
+     public void checkBalance(){
+         System.out.println("Available balance Rs"+balance);
+     }
+}
+class ATM {
+     private  BankDetails Details;
+     public  ATM(BankDetails details)
+     {
+         this.Details=details;
+     }
+      public void Display(){
+          Scanner sc=new Scanner(System.in);
+          int option;
+          do{
+              System.out.println("Welcome to ATM!");
+              System.out.println("1.DEPOSIT");
+              System.out.println("2.Current Balance");
+              System.out.println("3.WITHDRAW");
+              System.out.println("4.EXIT");
+              System.out.println("Enter the no. 1-4");
+              option=sc.nextInt();
+
+              switch(option){
+                  case 1:
+                      System.out.println("Enter deposit amount:");
+                      double depositAmount=sc.nextDouble();
+                      Details.deposit(depositAmount);
+                      break;
+                  case 2:
+                      Details.checkBalance();
+                      break;
+                  case 3:
+                      System.out.println("Enter withdrawal amount:");
+                      double amount=sc.nextDouble();
+                      Details.withdraw(amount);
+                  case 4:
+                      System.out.println("Thank you!");
+                      break;
+                  default:
+                      System.out.println("Enter the no. 1-4");
+              }
+              System.out.println();
+          }
+          while(option!=4);
+          sc.close();
+      }
+}
+public class AtmApp{
+    public static void main(String[] args) {
+        BankDetails Account = new BankDetails(500000);
+        ATM atm = new ATM(Account);
+        atm.Display();
+    }
+}
